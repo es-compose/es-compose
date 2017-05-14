@@ -17,14 +17,15 @@ start({
         },
         paths: [
             path.join(__dirname, 'views')
+            // path.join(__dirname, 'views2')
         ]
     },
 
-    routes: {
-        '/' : path.join(__dirname, 'routes')
-    },
+    routes: [
+        // path.join(__dirname, 'routes')
+    ],
 
     modules: {
-
+        pages: path.join(__dirname, '../modules/pages')
     }
 });

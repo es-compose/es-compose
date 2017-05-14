@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "allowJs": true,
+        "checkJs": true,
+        "alwaysStrict": true,
+        "target": "es6",
+        "lib": [
+            "es2017"
+        ]
+    },
+    "include": [
+        "."
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "typeAcquisition": {
+        "enable": true
+    }
+}
