@@ -1,10 +1,13 @@
 let context = require('./server/context');
 var statics = require('serve-static');
-
+var config = require('./config');
 /**
- * Bootstrapping
+ * Bootstrapper/starter
  */
-module.exports = function start(config = {}) {
+module.exports = function start(cnf = {}) {
+    
+
+
     context.on('app.init', (app) => {
         // view setup
         let templates = config.templates || {};
@@ -26,11 +29,11 @@ module.exports = function start(config = {}) {
             app.use(middleware);
         }
 
-        // modules
-        let modules = config.modules || {};
-        for(let name in modules) {
-            let module = require(modules[name]);
-            app.use(module(context));
+        // plugins
+        let plugins = config.plugins || {};
+        for(let name in plugins) {
+            let plugin = require(plugins[name]);
+            app.use(plugin(context));
         }
     });
 

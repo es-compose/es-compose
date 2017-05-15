@@ -1,0 +1,23 @@
+{
+    "name": "es-compose app",
+    "debug": true,
+    "port": 3000,
+
+    "statics": [
+        "../templates/statics"
+    ],
+
+    "views": {
+        "ext": "hbs",
+        "engines": {
+            "hbs" : "handlebars"
+        },
+        "paths": [
+            "../templates/views"
+        ]
+    },
+
+    "modules": {
+        "pages": "../modules/pages" 
+    }
+}

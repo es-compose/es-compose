@@ -7,7 +7,7 @@ start({
     port: 3000,
 
     statics: [
-        path.join(__dirname, 'public')
+        path.join(__dirname, '../templates/statics')
     ],
 
     templates: {
@@ -16,7 +16,7 @@ start({
             'hbs' : 'handlebars'
         },
         paths: [
-            path.join(__dirname, 'views')
+            path.join(__dirname, '../templates/views')
         ]
     },
 
@@ -24,7 +24,7 @@ start({
         // path.join(__dirname, 'routes')
     ],
 
-    modules: {
-        pages: path.join(__dirname, '../modules/pages')
+    plugins: {
+        pages: path.join(__dirname, '../plugins/pages')
     }
 });
