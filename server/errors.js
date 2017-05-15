@@ -1,22 +1,42 @@
-// catch 404 and forward to error handler
-let error404 = function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+let debug = require('debug')('app');
+let context = require('./context');
+
+// 404 handler
+let error404 = function(req, res, next) { 
+    var err = new Error('Not Found: ' + req.originalUrl);
+    err.status = 404;
+    next(err);
 };
 
 // error handler
-let finalHandler = function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+let errorHandler = function(err, req, res, next) {
+    context.emit('app.error', err);
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    res.locals.message = err.message;
+    
+    // render the error page
+    let status, script;
+    script = 'error';
+    if(context.get('env') === 'development') {
+        res.locals.error = err;
+    } else {
+        res.locals.error = {};
+        err.stack = null;
+    }
+    
+    status = err.status || 500;
+    try {
+        res.status(status);
+        res.render(script, {
+            status: status,
+            message: err.message,
+            error: err
+        });
+    } catch(e) {
+        context.emit('app.error', err);
+        debug(e);
+        res.send(e.message);
+    }
 };
 
-module.exports = [
-    error404,
-    finalHandler
-]
+module.exports = [error404, errorHandler];

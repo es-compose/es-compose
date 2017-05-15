@@ -4,22 +4,22 @@ var statics = require('serve-static');
 /**
  * Bootstrapping
  */
-module.exports = function bootstrapper(config = {}) {
-    // view setup
+module.exports = function start(config = {}) {
     context.on('app.init', (app) => {
+        // view setup
         let templates = config.templates || {};
         app.set('views', templates.paths || []);
         app.set('view engine', templates.ext);
     });
 
-    // public dir
     context.on('app.ready', (app) => {
+        // serving static files
         let publics = config.statics || [];
         for(let dir of publics) {
             app.use(statics(dir));
         }
 
-        // routes
+        // routes by the site, given first priority
         let routes = config.routes || [];
         for(let route of routes) {
             let middleware = require(route);
