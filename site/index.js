@@ -17,7 +17,6 @@ start({
         },
         paths: [
             path.join(__dirname, 'views')
-            // path.join(__dirname, 'views2')
         ]
     },
 
