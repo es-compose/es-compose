@@ -21,7 +21,8 @@ module.exports = function start(appConfig = {}, callback = null) {
         // view setup, if provided
         let templates = config.get('templates', {});
         if(templates) {
-            app.set('views', templates.paths || []);
+            let views = Object.values(templates.paths || {});
+            app.set('views', views);
             app.set('view engine', templates.ext);
         }
     });

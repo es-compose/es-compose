@@ -18,9 +18,9 @@ module.exports = {
         engines: {  // supported view extensions
             'hbs' : 'handlebars'
         },
-        paths: [    // view paths/directories
-            path.join(__dirname, '../templates/views')
-        ]
+        paths: {    // view paths/directories
+            "es-compose" : path.join(__dirname, '../templates/views')
+        }
     },
 
     /**
