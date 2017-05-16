@@ -7,6 +7,5 @@ module.exports = [
     // favicon(path.join(__dirname, 'public', 'favicon.ico'),
     logger('dev'),
     bodyParser.json(),
-    bodyParser.urlencoded({ extended: false }),
-    cookieParser()
+    bodyParser.urlencoded({ extended: false })
 ]

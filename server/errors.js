@@ -16,10 +16,12 @@ let errorHandler = function(err, req, res, next) {
     
     // render the error page
     let status, script;
-    script = 'error';
+    
     if(context.get('env') === 'development') {
+        script = 'debug';
         res.locals.error = err;
     } else {
+        script = 'error';
         res.locals.error = {};
         err.stack = null;
     }

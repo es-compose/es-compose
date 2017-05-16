@@ -2,9 +2,7 @@ var path = require('path');
 
 module.exports = {
     name: 'es-compose site',
-    debug: true,
-    port: 3000,
-
+    
     /**
      * define your statics/public folders
      */
@@ -34,9 +32,19 @@ module.exports = {
 
     /**
      * Plugins
-     * Order of entries may be important based on plugin
+     * Order of entries may be important based on plugin's intention
      */
     plugins: {
         pages: path.join(__dirname, '../plugins/pages')
+    },
+
+    /**
+     * environment specific overrides
+     */
+    $development : {
+    },
+
+    $staging: {
+
     }
-}
+};
