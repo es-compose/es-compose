@@ -7,12 +7,14 @@ var merge = require('deepmerge');
  * Bootstrapper/starter
  * Initializing entire application and start the server
  */
-module.exports = function start(appConfig) {
+module.exports = function start(appConfig = {}, callback = null) {
     const env = context.get('env'); 
 
     // create the config with default configuration and then merge
     let config = new Config(require('./config'), env); // load with default configs
-    config.load(appConfig);
+    if(appConfig) {
+        config.load(appConfig);
+    }
     context.set('config', config);
 
     context.on('app.init', (app) => {
@@ -45,6 +47,11 @@ module.exports = function start(appConfig) {
             app.use(plugin(context));
         }
     });
+
+    // initializing is done, now call the callback, if provided
+    if(callback) {
+        callback(context);
+    }
 
     // start the server
     require('./server');
