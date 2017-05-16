@@ -21,7 +21,7 @@ module.exports = function start(appConfig = {}, callback = null) {
     context.on('app.init', (app) => {
         // view setup, if provided
         let templates = config.get('templates', {});
-        let views = Utils.values(templates);
+        let views = Utils.values(templates.views);
         if(views.length) {
             app.set('views', views);
             app.set('view engine', templates.ext);
