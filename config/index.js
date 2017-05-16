@@ -34,8 +34,8 @@ module.exports = {
      * Plugins
      * Order of entries may be important based on plugin's intention
      */
-    plugins: {
-        pages: path.join(__dirname, '../plugins/pages')
+    modules: {
+        pages: path.join(__dirname, '../modules/pages')
     },
 
     /**

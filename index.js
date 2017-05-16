@@ -40,13 +40,20 @@ module.exports = function start(appConfig = {}, callback = null) {
             app.use(middleware);
         }
 
-        // plugins
-        let plugins = config.get('plugins', {});
-        for(let name in plugins) {
-            let plugin = require(plugins[name]);
+        // modules
+        let modules = config.get('modules', {});
+        for(let name in modules) {
+            let plugin = require(modules[name]);
             app.use(plugin(context));
         }
     });
+
+    // add plugins
+    let plugins = config.get('plugins', {});
+    for(let name in plugins) {
+        let plugin = require(plugins[name]);
+        plugin(context);
+    }
 
     // initializing is done, now call the callback, if provided
     if(callback) {
