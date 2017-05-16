@@ -1,7 +1,6 @@
 var path = require('path');
 let start = require('../');
 var favicon = require('serve-favicon');
-process.env.NODE_ENV = 'production';
 
 start({
     name: 'Testing'
