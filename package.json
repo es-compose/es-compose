@@ -1,6 +1,6 @@
 {
   "name": "es-compose",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "engines": {
     "node": "^7.7.0"
@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node ./site/index.js",
     "prestart:dev": "nsp check",
-    "start:dev": "nodemon ./site"
+    "start:dev": "nodemon ./site",
+    "test" : "mocha --recursive"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
@@ -26,6 +27,8 @@
     "serve-static": "^1.12.2"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.4.1",
     "nodemon": "^1.11.0",
     "nsp": "^2.6.3"
   }

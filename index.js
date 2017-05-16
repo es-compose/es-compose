@@ -1,4 +1,5 @@
 var Config = require('./lib/Config');
+var Utils = require('./lib/Utils');
 let context = require('./server/context');
 var serveStatics = require('serve-static');
 var merge = require('deepmerge');
@@ -20,8 +21,8 @@ module.exports = function start(appConfig = {}, callback = null) {
     context.on('app.init', (app) => {
         // view setup, if provided
         let templates = config.get('templates', {});
-        if(templates) {
-            let views = Object.values(templates.paths || {});
+        let views = Utils.values(templates);
+        if(views.length) {
             app.set('views', views);
             app.set('view engine', templates.ext);
         }
@@ -30,7 +31,8 @@ module.exports = function start(appConfig = {}, callback = null) {
     context.on('app.ready', (app) => {
         // serving static files
         let statics = config.get('statics', []);
-        for(let dir of statics) {
+        let dirs = Utils.values(statics);
+        for(let dir of dirs) {
             app.use(serveStatics(dir));
         }
 

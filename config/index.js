@@ -6,9 +6,9 @@ module.exports = {
     /**
      * define your statics/public folders
      */
-    statics: [
-        path.join(__dirname, '../templates/statics')
-    ],
+    statics: {
+        compose: path.join(__dirname, '../templates/statics')
+    },
 
     /**
      * templates/rendering related configuration
@@ -18,8 +18,8 @@ module.exports = {
         engines: {  // supported view extensions
             'hbs' : 'handlebars'
         },
-        paths: {    // view paths/directories
-            "es-compose" : path.join(__dirname, '../templates/views')
+        views: {   // view paths/directories
+            compose: path.join(__dirname, '../templates/views')
         }
     },
 
@@ -46,5 +46,9 @@ module.exports = {
 
     $staging: {
 
+    },
+
+    $always: {
+        
     }
 };
